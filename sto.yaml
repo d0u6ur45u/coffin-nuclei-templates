@@ -1,0 +1,195 @@
+id: subdomain-takeover-completo
+info:
+  name: Subdomain Takeover Detection (Full Fingerprint Dictionary)
+  author: cøradi | bbm v1
+  severity: high
+  description: Detecta mensagens de erro conhecidas que indicam possibilidade de subdomain takeover em serviços populares.
+  tags: takeover,subdomain,cloud,bugbounty
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    matchers-condition: or
+    matchers:
+
+      # AWS S3
+      - type: word
+        words:
+          - "The specified bucket does not exist"
+
+      # AWS Elastic Beanstalk
+      - type: word
+        words:
+          - "NXDOMAIN"
+
+      # Agile CRM
+      - type: word
+        words:
+          - "Sorry, this page is no longer available."
+
+      # Airee.ru
+      - type: word
+        words:
+          - "Ошибка 402. Сервис Айри.рф не оплачен"
+
+      # Anima
+      - type: word
+        words:
+          - "The page you were looking for does not exist."
+
+      # Bitbucket
+      - type: word
+        words:
+          - "Repository not found"
+
+      # Campaign Monitor
+      - type: word
+        words:
+          - "Trying to access your account?"
+
+      # Canny
+      - type: word
+        words:
+          - "Company Not Found There is no such company"
+
+      # Cargo Collective
+      - type: word
+        words:
+          - "404 Not Found"
+
+      # Digital Ocean
+      - type: word
+        words:
+          - "Domain uses DO name servers with no records in DO"
+
+      # Discourse
+      - type: word
+        words:
+          - "NXDOMAIN"
+
+      # Gemfury
+      - type: word
+        words:
+          - "404: This page could not be found."
+
+      # GetResponse
+      - type: word
+        words:
+          - "With GetResponse Landing Pages, lead generation has never been easier"
+
+      # Ghost
+      - type: regex
+        regex:
+          - "Site unavailable.*|Failed to resolve DNS path for this host"
+
+      # HatenaBlog
+      - type: word
+        words:
+          - "404 Blog is not found"
+
+      # Help Juice
+      - type: word
+        words:
+          - "We could not find what you're looking for."
+
+      # Help Scout
+      - type: word
+        words:
+          - "No settings were found for this company:"
+
+      # Helprace
+      - type: status
+        status:
+          - 301
+
+      # JetBrains YouTrack
+      - type: word
+        words:
+          - "is not a registered InCloud YouTrack"
+
+      # LaunchRock
+      - type: status
+        status:
+          - 500
+
+      # Microsoft Azure (NXDOMAIN detection)
+      - type: word
+        words:
+          - "NXDOMAIN"
+
+      # Ngrok
+      - type: word
+        words:
+          - "Tunnel .*\\.ngrok\\.io not found"
+
+      # Pantheon
+      - type: word
+        words:
+          - "404 error unknown site!"
+
+      # Pingdom
+      - type: word
+        words:
+          - "Sorry, couldn't find the status page"
+
+      # Readme.io
+      - type: word
+        words:
+          - "The creators of this project are still working on making everything perfect!"
+
+      # ReadTheDocs
+      - type: word
+        words:
+          - "The link you have followed or the URL that you entered does not exist."
+
+      # Short.io
+      - type: word
+        words:
+          - "Link does not exist"
+
+      # SmartJobBoard
+      - type: word
+        words:
+          - "This job board website is either expired or its domain name is invalid."
+
+      # Smugsmug
+      - type: word
+        words:
+          - "smugmug"  # Pode ajustar esse pra um fingerprint mais exato se quiser
+
+      # Strikingly
+      - type: word
+        words:
+          - "PAGE NOT FOUND."
+
+      # Surge.sh
+      - type: word
+        words:
+          - "project not found"
+
+      # SurveySparrow
+      - type: word
+        words:
+          - "Account not found."
+
+      # Uberflip
+      - type: word
+        words:
+          - "The URL you've accessed does not provide a hub."
+
+      # Uptimerobot
+      - type: word
+        words:
+          - "page not found"
+
+      # WordPress
+      - type: word
+        words:
+          - "Do you want to register"
+
+      # Worksites
+      - type: word
+        words:
+          - "Sorry, but the website you’re looking for doesn’t exist."
